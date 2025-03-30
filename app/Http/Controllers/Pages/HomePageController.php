@@ -103,4 +103,20 @@ class HomePageController extends Controller
 
         return redirect()->back();
     }
+
+    public function destroyImage(string $blockSlug)
+    {
+        $block = CmsBlock::where('page_slug', 'home')
+            ->where('block_slug', $blockSlug)
+            ->firstOrFail();
+
+        if ($block->image && Storage::disk('public')->exists($block->image)) {
+            Storage::disk('public')->delete($block->image);
+        }
+
+        $block->image = null;
+        $block->save();
+
+        return redirect()->back();
+    }
 }

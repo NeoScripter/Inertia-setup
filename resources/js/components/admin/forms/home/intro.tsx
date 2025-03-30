@@ -1,5 +1,3 @@
-import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
 import { useForm } from '@inertiajs/react';
 import ContentField from '../../ContentField';
 import FileInput from '../../FileInput';
@@ -9,17 +7,18 @@ import TextField from '../../TextField';
 export type IntroProps = {
     block?: { text: string | null; content: string | null; image: File | string | null };
     slug: string;
+    label: string;
 };
 
-export default function Intro({ block, slug }: IntroProps) {
-    const { data, setData, post, processing, errors, progress } = useForm({
+export default function Intro({ block, slug, label }: IntroProps) {
+    const { data, setData, post, processing, errors } = useForm({
         text: block?.text || '',
         content: block?.content || '',
         image: block?.image || null,
     });
 
     return (
-        <FormWrapper title="Карточка на главной странице" post={post} toastMessage="Intro successfully updated!" routeName="home.update" slug={slug}>
+        <FormWrapper label={label} post={post} toastMessage="Intro successfully updated!" routeName="home.update" slug={slug} disabled={processing}>
             <TextField
                 name="text"
                 label="Заголовок главной страницы"
@@ -36,13 +35,8 @@ export default function Intro({ block, slug }: IntroProps) {
                 error={errors.content}
             />
 
-            <FileInput image={data.image} onChange={(file) => setData('image', file)} error={errors.image} />
+            <FileInput image={data.image} onChange={(file) => setData('image', file)} error={errors.image} routeName={route('home.image.destroy', slug)} />
 
-            {progress && <Progress value={progress.percentage}>{progress.percentage}%</Progress>}
-
-            <Button type="submit" disabled={processing}>
-                Обновить
-            </Button>
         </FormWrapper>
     );
 }

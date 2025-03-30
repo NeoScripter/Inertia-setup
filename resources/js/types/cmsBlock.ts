@@ -18,4 +18,6 @@ export interface CmsBlock {
 
     created_at: string;
     updated_at: string;
-  }
+}
+
+export type BlockType = Record<string, CmsBlock>;
