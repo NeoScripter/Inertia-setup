@@ -1,6 +1,8 @@
 import UserLayout from '@/layouts/user-layout';
 import { BlockType } from '@/types/cmsBlock';
+import { pickBlock } from '@/utils/pickBlock';
 import { range } from '@/utils/range';
+import clsx from 'clsx';
 
 type WelcomeProps = {
     blocks: BlockType;
@@ -24,6 +26,7 @@ export default function Welcome({ blocks }: WelcomeProps) {
                                 header={item.text || ''}
                                 imagePath={item.image && `/storage/${item.image}`}
                                 description={item.content || ''}
+                                isGreen={pickBlock(blocks, 'question')?.boolean ?? false}
                             />
                         ) : null;
                     })}
@@ -37,11 +40,12 @@ type GridItemProps = {
     header: string;
     description: string;
     imagePath: string | null;
+    isGreen: boolean;
 };
 
-function GridItem({ header, description, imagePath }: GridItemProps) {
+function GridItem({ header, description, imagePath, isGreen }: GridItemProps) {
     return (
-        <div className="space-y-2 text-center">
+        <div className={clsx("space-y-2 text-center", isGreen && 'bg-green-400')}>
             <header>{header}</header>
             {imagePath && (
                 <div>

@@ -1,8 +1,9 @@
 import { useForm } from '@inertiajs/react';
-import ContentField from '../../ContentField';
-import FileInput from '../../FileInput';
-import TextField from '../../TextField';
-import AccordionForm from '../../AccordionForm';
+
+import TextField from '../../fields/TextField';
+import ContentField from '../../fields/ContentField';
+import FileInput from '../../fields/FileInput';
+import AccordionForm from '../../forms/AccordionForm';
 
 export type IntroProps = {
     block?: { text: string | null; content: string | null; image: File | string | null };

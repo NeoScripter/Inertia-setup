@@ -1,6 +1,6 @@
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { useId } from 'react';
-import { Textarea } from '../ui/textarea';
 
 type ContentFieldProps = {
     name: string;

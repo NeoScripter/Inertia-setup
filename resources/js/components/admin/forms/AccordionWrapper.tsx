@@ -1,4 +1,4 @@
-import { Accordion } from '../ui/accordion';
+import { Accordion } from "@/components/ui/accordion";
 
 type AccordionWrapperProps = {
     children: React.ReactNode;

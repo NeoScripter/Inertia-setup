@@ -1,7 +1,7 @@
 import { useForm } from '@inertiajs/react';
-import ContentField from '../../ContentField';
-import TextField from '../../TextField';
-import AccordionForm from '../../AccordionForm';
+import TextField from '../../fields/TextField';
+import ContentField from '../../fields/ContentField';
+import AccordionForm from '../../forms/AccordionForm';
 
 export type HeroProps = {
     block: { text: string | null; content: string | null };

@@ -1,10 +1,10 @@
+import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Button } from '@/components/ui/button';
 import { formatDate } from '@/lib/utils';
 import { VisitOptions } from 'node_modules/@inertiajs/core/types/types';
 import { FormEvent } from 'react';
 import { toast } from 'sonner';
-import { AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
-import { Button } from '../ui/button';
-import Spinner from './Spinner';
+import Spinner from '../elements/Spinner';
 
 type AccordionFormProps = {
     children: React.ReactNode;
