@@ -1,7 +1,7 @@
 import { useForm } from '@inertiajs/react';
 import ContentField from '../../ContentField';
-import FormWrapper from '../../FormWrapper';
 import TextField from '../../TextField';
+import AccordionForm from '../../AccordionForm';
 
 export type HeroProps = {
     block: { text: string | null; content: string | null };
@@ -13,10 +13,12 @@ export default function Hero({ block, slug, label }: HeroProps) {
     const { data, setData, post, processing, errors } = useForm({
         text: block.text || '',
         content: block.content || '',
+        page_slug: 'home',
+        block_slug: slug,
     });
 
     return (
-        <FormWrapper label={label} post={post} toastMessage="Hero successfully updated!" routeName="home.update" slug={slug} disabled={processing}>
+        <AccordionForm label={label} post={post} toastMessage="Hero successfully updated!" routeName="home.update" blockSlug={slug} disabled={processing}>
             <TextField
                 name="text"
                 label="Заголовок главной страницы"
@@ -32,6 +34,6 @@ export default function Hero({ block, slug, label }: HeroProps) {
                 onChange={(val) => setData('content', val)}
                 error={errors.content}
             />
-        </FormWrapper>
+        </AccordionForm>
     );
 }

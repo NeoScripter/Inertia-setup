@@ -1,5 +1,7 @@
 <?php
 
+use App\Helpers\CmsBlockHelper;
+use App\Http\Controllers\Admin\CMSController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -13,6 +15,25 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('admin.dashboard');
 });
 
-require __DIR__.'/pages.php';
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+Route::get('/', function () {
+    return Inertia::render('user/welcome', [
+        'blocks' => CmsBlockHelper::getByPage('home')
+    ]);
+})->name('home');
+
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/admin/home', function () {
+        return Inertia::render('admin/home', [
+            'blocks' => CmsBlockHelper::getByPage('home'),
+        ]);
+    })->name('home.edit');
+
+
+    Route::post('/admin/update', [CMSController::class, 'update'])->name('admin.update');
+    Route::delete('/blocks/image', [CMSController::class, 'destroyImage'])->name('admin.image.destroy');
+});
+
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';

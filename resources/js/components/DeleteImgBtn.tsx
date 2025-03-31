@@ -3,9 +3,11 @@ import { Link } from '@inertiajs/react';
 type DeleteImgBtnProps = {
     routeName: string;
     handleDeleteImage: () => void;
+    pageSlug: string;
+    blockSlug: string;
 };
 
-export default function DeleteImgBtn({ routeName, handleDeleteImage }: DeleteImgBtnProps) {
+export default function DeleteImgBtn({ routeName, handleDeleteImage, pageSlug, blockSlug }: DeleteImgBtnProps) {
     return (
         <Link
             href={routeName}
@@ -13,6 +15,7 @@ export default function DeleteImgBtn({ routeName, handleDeleteImage }: DeleteImg
             onClick={handleDeleteImage}
             as="button"
             type="button"
+            data={{ page_slug: pageSlug, block_slug: blockSlug }}
             className="absolute top-1 right-1 inline-flex cursor-pointer items-center rounded-sm bg-red-600 p-1 text-center text-sm font-medium text-white hover:bg-red-400 focus:ring-4 focus:ring-red-300 focus:outline-none dark:bg-red-400 dark:hover:bg-red-400 dark:focus:ring-red-400"
         >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">

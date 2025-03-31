@@ -1,9 +1,9 @@
+import { formatDate } from '@/lib/utils';
 import React, { useEffect, useId, useState } from 'react';
+import { toast } from 'sonner';
+import DeleteImgBtn from '../DeleteImgBtn';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
-import { toast } from 'sonner';
-import { formatDate } from '@/lib/utils';
-import DeleteImgBtn from '../DeleteImgBtn';
 
 type FileInputProps = {
     label?: string;
@@ -11,9 +11,11 @@ type FileInputProps = {
     onChange: (file: File | null) => void;
     error?: string;
     routeName: string;
+    pageSlug: string;
+    blockSlug: string;
 };
 
-const FileInput: React.FC<FileInputProps> = ({ label = 'Фото', image, onChange, error, routeName }) => {
+const FileInput: React.FC<FileInputProps> = ({ label = 'Фото', image, onChange, error, routeName, pageSlug, blockSlug }) => {
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const id = useId();
 
@@ -58,7 +60,7 @@ const FileInput: React.FC<FileInputProps> = ({ label = 'Фото', image, onChan
                 <div className="relative mt-5 block h-60 w-max max-w-xs rounded-lg border border-gray-200 bg-white shadow-sm hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                     <img src={previewUrl} alt="Preview" className="h-full rounded object-contain object-center" />
 
-                    <DeleteImgBtn routeName={routeName} handleDeleteImage={handleDeleteImage} />
+                    <DeleteImgBtn routeName={routeName} handleDeleteImage={handleDeleteImage} pageSlug={pageSlug} blockSlug={blockSlug} />
                 </div>
             )}
         </div>

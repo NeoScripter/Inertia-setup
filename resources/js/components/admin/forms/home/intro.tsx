@@ -1,8 +1,8 @@
 import { useForm } from '@inertiajs/react';
 import ContentField from '../../ContentField';
 import FileInput from '../../FileInput';
-import FormWrapper from '../../FormWrapper';
 import TextField from '../../TextField';
+import AccordionForm from '../../AccordionForm';
 
 export type IntroProps = {
     block?: { text: string | null; content: string | null; image: File | string | null };
@@ -15,10 +15,12 @@ export default function Intro({ block, slug, label }: IntroProps) {
         text: block?.text || '',
         content: block?.content || '',
         image: block?.image || null,
+        page_slug: 'home',
+        block_slug: slug,
     });
 
     return (
-        <FormWrapper label={label} post={post} toastMessage="Intro successfully updated!" routeName="home.update" slug={slug} disabled={processing}>
+        <AccordionForm label={label} post={post} toastMessage="Intro successfully updated!" routeName="admin.update" blockSlug={slug} disabled={processing}>
             <TextField
                 name="text"
                 label="Заголовок главной страницы"
@@ -35,8 +37,8 @@ export default function Intro({ block, slug, label }: IntroProps) {
                 error={errors.content}
             />
 
-            <FileInput image={data.image} onChange={(file) => setData('image', file)} error={errors.image} routeName={route('home.image.destroy', slug)} />
+            <FileInput blockSlug={slug} pageSlug='home' image={data.image} onChange={(file) => setData('image', file)} error={errors.image} routeName={route('admin.image.destroy', slug)} />
 
-        </FormWrapper>
+        </AccordionForm>
     );
 }

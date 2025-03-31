@@ -23,16 +23,22 @@ export default function Home({ blocks }: PageProps) {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Admin" />
             <div className="grid gap-4 rounded-xl p-4 md:grid-cols-2">
-                <AccordionWrapper>
-                    <Hero label="Заголовок главной страницы" block={blocks.hero} slug="hero" />
-                </AccordionWrapper>
+                <div>
+                    <h2 className="p-2 text-lg font-bold">Хиро секция</h2>
+                    <AccordionWrapper>
+                        <Hero label="Заголовок главной страницы" block={blocks.hero} slug="hero" />
+                    </AccordionWrapper>
+                </div>
             </div>
             <div className="grid gap-4 rounded-xl p-4 md:grid-cols-2">
-                <AccordionWrapper>
-                    {range(1, 3).map((digit) => (
-                        <Intro key={`intro${digit}`} label={`Карточка ${digit}`} block={blocks[`intro${digit}`]} slug={`intro${digit}`} />
-                    ))}
-                </AccordionWrapper>
+                <div>
+                    <h2 className="p-2 text-lg font-bold">Карточки на главной странице</h2>
+                    <AccordionWrapper>
+                        {range(1, 3).map((digit) => (
+                            <Intro key={`intro${digit}`} label={`Карточка ${digit}`} block={blocks[`intro${digit}`]} slug={`intro${digit}`} />
+                        ))}
+                    </AccordionWrapper>
+                </div>
             </div>
         </AppLayout>
     );

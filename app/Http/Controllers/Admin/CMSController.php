@@ -1,46 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Pages;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CmsBlock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Inertia\Inertia;
 
-class HomePageController extends Controller
+class CMSController extends Controller
 {
-    public function index()
-    {
-        $blocks = CmsBlock::where('page_slug', 'home')
-            ->get()
-            ->keyBy('block_slug');
-
-        return Inertia::render('user/welcome', [
-            'blocks' => $blocks,
-        ]);
-    }
-
-    /**
-     * Show the edit page for a specific page's blocks.
-     */
-    public function edit()
-    {
-        $blocks = CmsBlock::where('page_slug', 'home')
-            ->get()
-            ->keyBy('block_slug');
-
-        return Inertia::render('admin/home', [
-            'blocks' => $blocks,
-        ]);
-    }
-
-    /**
-     * Update or create a block with a given slug.
-     */
-    public function update(Request $request, string $blockSlug)
+    public function update(Request $request)
     {
         $validated = $request->validate([
+            'page_slug' => 'required|string|max:255',
+            'block_slug' => 'required|string|max:255',
+
             'text' => 'nullable|string|max:255',
             'texts' => 'nullable|array',
             'texts.*' => 'nullable|string|max:255',
@@ -59,8 +33,8 @@ class HomePageController extends Controller
         ]);
 
         $block = CmsBlock::firstOrNew([
-            'page_slug' => 'home',
-            'block_slug' => $blockSlug,
+            'page_slug' => $validated['page_slug'],
+            'block_slug' => $validated['block_slug'],
         ]);
 
         $block->fill([
@@ -104,11 +78,16 @@ class HomePageController extends Controller
         return redirect()->back();
     }
 
-    public function destroyImage(string $blockSlug)
+    public function destroyImage(Request $request)
     {
-        $block = CmsBlock::where('page_slug', 'home')
-            ->where('block_slug', $blockSlug)
-            ->firstOrFail();
+        $validated = $request->validate([
+            'page_slug' => 'required|string|max:255',
+            'block_slug' => 'required|string|max:255',
+        ]);
+
+        $block = CmsBlock::where('page_slug', $validated['page_slug'])
+        ->where('block_slug', $validated['block_slug'])
+        ->firstOrFail();
 
         if ($block->image && Storage::disk('public')->exists($block->image)) {
             Storage::disk('public')->delete($block->image);
