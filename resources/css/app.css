@@ -157,3 +157,7 @@
         @apply bg-background text-foreground;
     }
 }
+
+.blur-effect {
+    filter: grayscale(100%) blur(3px);
+}

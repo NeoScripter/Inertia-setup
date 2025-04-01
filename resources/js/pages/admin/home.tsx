@@ -6,8 +6,9 @@ import { BlockType } from '@/types/cmsBlock';
 import { range } from '@/utils/range';
 import { pickBlock } from '@/utils/pickBlock';
 import { Head } from '@inertiajs/react';
-import AccordionWrapper from '@/components/admin/forms/AccordionWrapper';
+import AccordionWrapper from '@/components/admin/forms/accordion-wrapper';
 import Question from '@/components/admin/pages/home/question';
+import Gallery from '@/components/admin/pages/home/gallery';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -48,6 +49,15 @@ export default function Home({ blocks }: PageProps) {
                     <h2 className="p-2 text-lg font-bold">Цвет карточек на странице</h2>
                     <AccordionWrapper>
                         <Question label='Вопрос' block={pickBlock(blocks, 'question')} slug="question" />
+                    </AccordionWrapper>
+                </div>
+            </div>
+
+            <div className="grid gap-4 rounded-xl p-4 md:grid-cols-2">
+                <div>
+                    <h2 className="p-2 text-lg font-bold">Галерея фотографий</h2>
+                    <AccordionWrapper>
+                        <Gallery label='Фотографии' block={pickBlock(blocks, 'gallery')} slug="gallery" />
                     </AccordionWrapper>
                 </div>
             </div>

@@ -13,12 +13,12 @@ export default function Welcome({ blocks }: WelcomeProps) {
         <UserLayout title="Home">
             <main className="space-y-10 pt-10 text-center">
                 <section>
-                    <h1 className="mb-3 text-3xl font-bold">{blocks.hero.text}</h1>
-                    <p>{blocks.hero.content}</p>
+                    <h1 className="mb-3 text-3xl font-bold">{blocks?.hero?.text || 'No content'}</h1>
+                    <p>{blocks?.hero?.content || 'No content'}</p>
                 </section>
                 <section className="grid grid-cols-3 gap-6">
                     {range(1, 3).map((number) => {
-                        const item = blocks[`intro${number}`];
+                        const item = pickBlock(blocks, `intro${number}`);
 
                         return item ? (
                             <GridItem

@@ -8,10 +8,14 @@ class CmsBlock extends Model
 {
     protected $guarded = ['id'];
 
+    public function images()
+    {
+        return $this->hasMany(CmsImage::class)->orderBy('order');
+    }
+
     protected $casts = [
         'texts' => 'array',
         'contents' => 'array',
-        'images' => 'array',
         'boolean' => 'boolean',
         'number' => 'integer',
     ];

@@ -1,11 +1,9 @@
-import { formatDate } from '@/lib/utils';
 import React, { useEffect, useId, useState } from 'react';
-import { toast } from 'sonner';
-import DeleteImgBtn from '../elements/DeleteImgBtn';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
+import DeleteImgLink from '../elements/delete-img-link';
 
-type FileInputProps = {
+type ImageFieldProps = {
     label?: string;
     image: File | string | null;
     onChange: (file: File | null) => void;
@@ -15,7 +13,7 @@ type FileInputProps = {
     blockSlug: string;
 };
 
-const FileInput: React.FC<FileInputProps> = ({ label = 'Фото', image, onChange, error, routeName, pageSlug, blockSlug }) => {
+const ImageField: React.FC<ImageFieldProps> = ({ label = 'Фото', image, onChange, error, routeName, pageSlug, blockSlug }) => {
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const id = useId();
 
@@ -37,9 +35,6 @@ const FileInput: React.FC<FileInputProps> = ({ label = 'Фото', image, onChan
     function handleDeleteImage() {
         setPreviewUrl(null);
         onChange(null);
-        toast.message('Фотография успешно удалена!', {
-            description: formatDate(new Date()),
-        });
     }
 
     return (
@@ -57,14 +52,14 @@ const FileInput: React.FC<FileInputProps> = ({ label = 'Фото', image, onChan
             {error && <p className="mt-1 text-sm text-red-600 dark:text-red-500">{error}</p>}
 
             {previewUrl && (
-                <div className="relative mt-5 block h-40 w-max max-w-xs rounded-lg border border-gray-200 bg-white shadow-sm hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                    <img src={previewUrl} alt="Preview" className="h-full rounded object-contain object-center" />
+                <div className="group relative mt-5 block h-40 w-max max-w-xs rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                    <img src={previewUrl} alt="Preview" className="h-full rounded object-contain object-center group-hover:blur-[1.5px] transition-all duration-300 ease-in-out" />
 
-                    <DeleteImgBtn routeName={routeName} handleDeleteImage={handleDeleteImage} pageSlug={pageSlug} blockSlug={blockSlug} />
+                    <DeleteImgLink routeName={routeName} handleDeleteImage={handleDeleteImage} data={{ page_slug: pageSlug, block_slug: blockSlug }} />
                 </div>
             )}
         </div>
     );
 };
 
-export default FileInput;
+export default ImageField;

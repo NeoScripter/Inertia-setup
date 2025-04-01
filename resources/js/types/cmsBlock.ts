@@ -10,7 +10,7 @@ export interface CmsBlock {
     contents: string[] | null;
 
     image: string | null;
-    images: string[] | null;
+    images: CmsImage[];
 
     color: string | null;
     number: number | null;
@@ -21,3 +21,11 @@ export interface CmsBlock {
 }
 
 export type BlockType = Record<string, CmsBlock>;
+
+export type CmsImage = {
+    id: number;
+    path: string;
+    order: number;
+    created_at: string;
+    updated_at: string;
+  }

@@ -1,6 +1,6 @@
 import { useForm } from '@inertiajs/react';
-import AccordionForm from '../../forms/AccordionForm';
-import BooleanField from '../../fields/BooleanField';
+import AccordionForm from '../../forms/accordion-form';
+import BooleanField from '../../fields/boolean';
 
 export type QuestionProps = {
     block?: { boolean: boolean | null };
@@ -19,7 +19,7 @@ export default function Question({ block, slug, label }: QuestionProps) {
         <AccordionForm
             label={label}
             post={post}
-            toastMessage="Question successfully updated!"
+            toastMessage="Цвет карточек успешно обновлен!"
             routeName="admin.update"
             blockSlug={slug}
             disabled={processing}

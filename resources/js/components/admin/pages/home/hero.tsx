@@ -1,18 +1,18 @@
 import { useForm } from '@inertiajs/react';
-import TextField from '../../fields/TextField';
-import ContentField from '../../fields/ContentField';
-import AccordionForm from '../../forms/AccordionForm';
+import TextField from '../../fields/textarea';
+import ContentField from '../../fields/content';
+import AccordionForm from '../../forms/accordion-form';
 
 export type HeroProps = {
-    block: { text: string | null; content: string | null };
+    block?: { text: string | null; content: string | null };
     slug: string;
     label: string;
 };
 
 export default function Hero({ block, slug, label }: HeroProps) {
     const { data, setData, post, processing, errors } = useForm({
-        text: block.text || '',
-        content: block.content || '',
+        text: block?.text || '',
+        content: block?.content || '',
         page_slug: 'home',
         block_slug: slug,
     });

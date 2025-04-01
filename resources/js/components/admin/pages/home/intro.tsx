@@ -1,9 +1,9 @@
 import { useForm } from '@inertiajs/react';
 
-import TextField from '../../fields/TextField';
-import ContentField from '../../fields/ContentField';
-import FileInput from '../../fields/FileInput';
-import AccordionForm from '../../forms/AccordionForm';
+import TextField from '../../fields/textarea';
+import ContentField from '../../fields/content';
+import ImageField from '../../fields/image';
+import AccordionForm from '../../forms/accordion-form';
 
 export type IntroProps = {
     block?: { text: string | null; content: string | null; image: File | string | null };
@@ -38,7 +38,7 @@ export default function Intro({ block, slug, label }: IntroProps) {
                 error={errors.content}
             />
 
-            <FileInput blockSlug={slug} pageSlug='home' image={data.image} onChange={(file) => setData('image', file)} error={errors.image} routeName={route('admin.image.destroy', slug)} />
+            <ImageField blockSlug={slug} pageSlug='home' image={data.image} onChange={(file) => setData('image', file)} error={errors.image} routeName={route('admin.image.destroy', slug)} />
 
         </AccordionForm>
     );

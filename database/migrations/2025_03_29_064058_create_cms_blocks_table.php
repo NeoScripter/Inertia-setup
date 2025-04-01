@@ -20,7 +20,6 @@ return new class extends Migration
             $table->text('content')->nullable()->default(null);
             $table->json('contents')->nullable()->default(null);
             $table->string('image')->nullable()->default(null);
-            $table->json('images')->nullable()->default(null);
             $table->string('color')->nullable()->default(null);
             $table->integer('number')->nullable()->default(null);
             $table->boolean('boolean')->nullable()->default(null);

@@ -8,7 +8,10 @@ class CmsBlockHelper
 {
     public static function getByPage(string $pageSlug)
     {
-        return CmsBlock::where('page_slug', $pageSlug)
+        return CmsBlock::with(['images' => function ($query) {
+            $query->orderBy('order');
+        }])
+            ->where('page_slug', $pageSlug)
             ->get()
             ->keyBy('block_slug');
     }

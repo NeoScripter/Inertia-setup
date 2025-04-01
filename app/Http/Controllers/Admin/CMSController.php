@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CmsBlock;
+use App\Models\CmsImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,7 +26,7 @@ class CMSController extends Controller
 
             'image' => 'nullable|image|max:1024',
             'images' => 'nullable|array',
-            'images.*' => 'image|max:1024',
+            'images*' => 'image|max:1024',
 
             'color' => 'nullable|string|max:255',
             'number' => 'nullable|integer',
@@ -57,20 +58,14 @@ class CMSController extends Controller
         }
 
         if ($request->hasFile('images')) {
-            if (is_array($block->images)) {
-                foreach ($block->images as $oldImage) {
-                    if (Storage::disk('public')->exists($oldImage)) {
-                        Storage::disk('public')->delete($oldImage);
-                    }
-                }
-            }
-
-            $storedPaths = [];
             foreach ($request->file('images') as $image) {
-                $storedPaths[] = $image->store('cms_blocks/images', 'public');
-            }
+                $path = $image->store('cms_blocks/images', 'public');
 
-            $block->images = $storedPaths;
+                $block->images()->create([
+                    'path' => $path,
+                    'order' => $block->images()->count(),
+                ]);
+            }
         }
 
         $block->save();
@@ -86,8 +81,8 @@ class CMSController extends Controller
         ]);
 
         $block = CmsBlock::where('page_slug', $validated['page_slug'])
-        ->where('block_slug', $validated['block_slug'])
-        ->firstOrFail();
+            ->where('block_slug', $validated['block_slug'])
+            ->firstOrFail();
 
         if ($block->image && Storage::disk('public')->exists($block->image)) {
             Storage::disk('public')->delete($block->image);
@@ -95,6 +90,38 @@ class CMSController extends Controller
 
         $block->image = null;
         $block->save();
+
+        return redirect()->back();
+    }
+
+    public function destroyGalleryImage(Request $request)
+    {
+        $validated = $request->validate([
+            'id' => 'required|integer',
+            'page_slug' => 'required|string|max:255',
+            'block_slug' => 'required|string|max:255',
+        ]);
+
+        $image = CmsImage::findOrFail($validated['id']);
+
+        if (Storage::disk('public')->exists($image->path)) {
+            Storage::disk('public')->delete($image->path);
+        }
+
+        $image->delete();
+
+        $block = CmsBlock::where('page_slug', $validated['page_slug'])
+            ->where('block_slug', $validated['block_slug'])
+            ->firstOrFail();
+
+        $images = $block->images()->orderBy('order')->get();
+
+        foreach ($images as $index => $img) {
+            if ($img->order !== $index) {
+                $img->order = $index;
+                $img->save();
+            }
+        }
 
         return redirect()->back();
     }
