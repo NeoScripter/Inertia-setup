@@ -42,7 +42,7 @@ export default function Welcome({ blocks }: WelcomeProps) {
                 </section>
                 <section>
                     <ul className=''>
-                        {blocks?.groceries?.texts?.map((text, index) => (
+                        {blocks?.groceries?.contents?.map((text, index) => (
                             <li key={index + 'text'}>{text}</li>
                         ))}
                     </ul>

@@ -1,16 +1,16 @@
 import { useForm } from '@inertiajs/react';
-import TextsField from '../../fields/texts';
 import AccordionForm from '../../forms/accordion-form';
+import ContentsField from '../../fields/contents';
 
 export type GroceriesProps = {
-    block?: { texts: string[] | null };
+    block?: { contents: string[] | null };
     slug: string;
     label: string;
 };
 
 export default function Groceries({ block, slug, label }: GroceriesProps) {
     const { data, setData, post, processing, errors } = useForm({
-        texts: block?.texts || [],
+        contents: block?.contents || [],
         page_slug: 'home',
         block_slug: slug,
     });
@@ -24,7 +24,7 @@ export default function Groceries({ block, slug, label }: GroceriesProps) {
             blockSlug={slug}
             disabled={processing}
         >
-            <TextsField label="Список покупок" texts={data.texts} onChange={(updated) => setData('texts', updated)} errors={errors} />
+            <ContentsField label="Список покупок" contents={data.contents} onChange={(updated) => setData('contents', updated)} errors={errors} />
         </AccordionForm>
     );
 }

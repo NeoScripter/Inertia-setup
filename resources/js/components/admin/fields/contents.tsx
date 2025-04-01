@@ -1,56 +1,56 @@
 import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import clsx from 'clsx';
-import { ChevronsUpDown, ListPlus, X } from 'lucide-react';
+import { ChevronsUpDown, ListPlus, ListX } from 'lucide-react';
 import { useId } from 'react';
 
-type TextsFieldProps = {
+type ContentsFieldProps = {
     label: string;
-    texts: string[];
+    contents: string[];
     onChange: (updated: string[]) => void;
-    errors?: Partial<Record<`texts.${number}`, string>>;
+    errors?: Partial<Record<`contents.${number}`, string>>;
 };
 
-export default function TextsField({ label, texts, onChange, errors }: TextsFieldProps) {
+export default function ContentsField({ label, contents, onChange, errors }: ContentsFieldProps) {
     const id = useId();
 
     const handleTextChange = (index: number, value: string) => {
-        const updated = [...texts];
+        const updated = [...contents];
         updated[index] = value;
         onChange(updated);
     };
 
     const removeText = (index: number) => {
-        const updated = [...texts];
+        const updated = [...contents];
         updated.splice(index, 1);
         onChange(updated);
     };
 
     const addText = () => {
-        onChange([...texts, '']);
+        onChange([...contents, '']);
     };
 
     return (
         <div className="border-muted mb-4 w-full space-y-2 rounded-xl border p-2 pb-0 shadow-sm">
             <Collapsible className="space-y-2">
-                <CollapsibleTrigger className="flex w-full cursor-pointer items-center justify-between space-x-4 px-4">
+                <CollapsibleTrigger className="flex w-full items-center justify-between space-x-4 px-4 cursor-pointer">
                     <h4 className="text-sm font-semibold">{label}</h4>
-                    <Button type="button" variant="ghost" size="sm" className="cursor-pointer">
+                    <Button type="button" variant="ghost" size="sm" className='cursor-pointer'>
                         <ChevronsUpDown className="h-4 w-4" />
                         <span className="sr-only">Toggle</span>
                     </Button>
                 </CollapsibleTrigger>
 
                 <CollapsibleContent className="space-y-2 pb-2">
-                    {texts.map((text, index) => {
-                        const fieldKey = `texts.${index}` as keyof typeof errors;
+                    {contents.map((text, index) => {
+                        const fieldKey = `contents.${index}` as keyof typeof errors;
                         const fieldError = errors?.[fieldKey];
 
                         return (
                             <div key={id + index}>
-                                <div className="flex items-center gap-1">
-                                    <Input
+                                <div className="flex items-start gap-1">
+                                    <Textarea
                                         id={id + index}
                                         value={text || ''}
                                         onChange={(e) => handleTextChange(index, e.target.value)}
@@ -62,7 +62,7 @@ export default function TextsField({ label, texts, onChange, errors }: TextsFiel
                                         type="button"
                                         className={clsx('cursor-pointer', fieldError && 'text-red-500')}
                                     >
-                                        <X className="size-5" />
+                                        <ListX className="size-5" />
                                     </Button>
                                 </div>
                                 {fieldError && <p className="mt-1 ml-1 text-sm text-red-500">{fieldError}</p>}
