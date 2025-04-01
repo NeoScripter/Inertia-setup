@@ -25,7 +25,7 @@ export default function Gallery({ block, slug, label }: GalleryProps) {
     return (
         <AccordionForm
             label={label}
-            post={(url, options) => post(url, { ...options, forceFormData: true })}
+            post={post}
             toastMessage="Галерея успешно обновлена!"
             routeName="admin.update"
             blockSlug={slug}

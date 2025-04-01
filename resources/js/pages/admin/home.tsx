@@ -9,6 +9,7 @@ import { Head } from '@inertiajs/react';
 import AccordionWrapper from '@/components/admin/forms/accordion-wrapper';
 import Question from '@/components/admin/pages/home/question';
 import Gallery from '@/components/admin/pages/home/gallery';
+import Groceries from '@/components/admin/pages/home/groceries';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -58,6 +59,14 @@ export default function Home({ blocks }: PageProps) {
                     <h2 className="p-2 text-lg font-bold">Галерея фотографий</h2>
                     <AccordionWrapper>
                         <Gallery label='Фотографии' block={pickBlock(blocks, 'gallery')} slug="gallery" />
+                    </AccordionWrapper>
+                </div>
+            </div>
+            <div className="grid gap-4 rounded-xl p-4 md:grid-cols-2">
+                <div>
+                    <h2 className="p-2 text-lg font-bold">Список покупок</h2>
+                    <AccordionWrapper>
+                        <Groceries label='Покупки' block={pickBlock(blocks, 'groceries')} slug="groceries" />
                     </AccordionWrapper>
                 </div>
             </div>

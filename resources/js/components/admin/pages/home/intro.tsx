@@ -1,6 +1,6 @@
 import { useForm } from '@inertiajs/react';
 
-import TextField from '../../fields/textarea';
+import TextField from '../../fields/text';
 import ContentField from '../../fields/content';
 import ImageField from '../../fields/image';
 import AccordionForm from '../../forms/accordion-form';

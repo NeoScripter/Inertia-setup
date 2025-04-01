@@ -18,11 +18,11 @@ class CMSController extends Controller
 
             'text' => 'nullable|string|max:255',
             'texts' => 'nullable|array',
-            'texts.*' => 'nullable|string|max:255',
+            'texts.*' => 'required|string|max:255',
 
             'content' => 'nullable|string|max:65534',
             'contents' => 'nullable|array',
-            'contents.*' => 'nullable|string|max:65534',
+            'contents.*' => 'required|string|max:65534',
 
             'image' => 'nullable|image|max:1024',
             'images' => 'nullable|array',

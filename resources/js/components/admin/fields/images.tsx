@@ -1,6 +1,7 @@
+import { Input } from '@/components/ui/input';
 import { CmsImage } from '@/types/cmsBlock';
 import { router } from '@inertiajs/react';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useId, useState } from 'react';
 import { toast } from 'sonner';
 import DeleteImgBtn from '../elements/delete-img-btn';
 import DeleteImgLink from '../elements/delete-img-link';
@@ -15,6 +16,7 @@ type ImagesFieldProps = {
 };
 
 export default function ImagesField({ blockImages = [], errors = {}, value, onChange, pageSlug, blockSlug }: ImagesFieldProps) {
+    const id = useId();
     const [previewImages, setPreviewImages] = useState<File[]>(value);
 
     const maxSize = 1024 * 1024; // 1MB
@@ -51,7 +53,7 @@ export default function ImagesField({ blockImages = [], errors = {}, value, onCh
     return (
         <>
             <div>
-                <input type="file" multiple accept="image/*" onChange={handleNewFileSelect} />
+                <Input id={id} type="file" multiple accept="image/*" onChange={handleNewFileSelect} className="block cursor-pointer pt-2" />
                 {errors.images && <p className="mt-1 text-sm text-red-500">{errors.images}</p>}
             </div>
 

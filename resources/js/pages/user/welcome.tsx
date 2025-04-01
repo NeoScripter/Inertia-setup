@@ -31,6 +31,22 @@ export default function Welcome({ blocks }: WelcomeProps) {
                         ) : null;
                     })}
                 </section>
+                <section>
+                    <div className='flex items-start flex-wrap gap-2'>
+                        {blocks?.gallery?.images.map((image) => (
+                            <div key={`${image.id}image`} className='size-40'>
+                                <img src={`/storage/${image.path}`} alt="" className='object-contain object-center h-full w-full' />
+                            </div>
+                        ))}
+                    </div>
+                </section>
+                <section>
+                    <ul className=''>
+                        {blocks?.groceries?.texts?.map((text, index) => (
+                            <li key={index + 'text'}>{text}</li>
+                        ))}
+                    </ul>
+                </section>
             </main>
         </UserLayout>
     );
