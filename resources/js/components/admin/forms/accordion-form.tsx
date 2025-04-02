@@ -34,7 +34,7 @@ export default function AccordionForm({ post, children, toastMessage, routeName,
         <AccordionItem value={blockSlug}>
             <AccordionTrigger className="cursor-pointer font-semibold">{label}</AccordionTrigger>
             <AccordionContent>
-                <form onSubmit={handleSubmit} className="space-y-3">
+                <form onSubmit={handleSubmit} className="space-y-4">
                     {children}
 
                     <Button type="submit" disabled={disabled}>

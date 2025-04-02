@@ -4,11 +4,12 @@ import { format } from 'date-fns';
 import ContentField from '../../fields/content';
 import DateField from '../../fields/date';
 import ImageField from '../../fields/image';
+import NumberField from '../../fields/number';
 import TextField from '../../fields/text';
 import AccordionForm from '../../forms/accordion-form';
 
 export type IntroProps = {
-    block?: { text: string | null; content: string | null; image: File | string | null; date: string | null };
+    block?: { text: string | null; content: string | null; image: File | string | null; date: string | null; number: number | null };
     slug: string;
     label: string;
 };
@@ -16,6 +17,7 @@ export type IntroProps = {
 export default function Intro({ block, slug, label }: IntroProps) {
     const { data, setData, post, processing, errors } = useForm({
         text: block?.text || '',
+        number: block?.number || null,
         content: block?.content || '',
         image: block?.image || null,
         date: block?.date ? format(block.date, 'yyyy-MM-dd') : null,
@@ -33,15 +35,20 @@ export default function Intro({ block, slug, label }: IntroProps) {
             disabled={processing}
         >
             <TextField
-                name="text"
                 label="Заголовок главной страницы"
                 value={data.text}
                 onChange={(val) => setData('text', val)}
                 error={errors.text}
             />
 
+            <NumberField
+                label="Число на странице"
+                value={data.number}
+                onChange={(val) => setData('number', val)}
+                error={errors.number}
+            />
+
             <ContentField
-                name="content"
                 label="Подзаголовок главной страницы"
                 value={data.content}
                 onChange={(val) => setData('content', val)}

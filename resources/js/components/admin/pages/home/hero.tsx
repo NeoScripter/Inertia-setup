@@ -20,7 +20,6 @@ export default function Hero({ block, slug, label }: HeroProps) {
     return (
         <AccordionForm label={label} post={post} toastMessage="Hero successfully updated!" routeName="admin.update" blockSlug={slug} disabled={processing}>
             <TextField
-                name="text"
                 label="Заголовок главной страницы"
                 value={data.text}
                 onChange={(val) => setData('text', val)}
@@ -28,7 +27,6 @@ export default function Hero({ block, slug, label }: HeroProps) {
             />
 
             <ContentField
-                name="content"
                 label="Подзаголовок главной страницы"
                 value={data.content}
                 onChange={(val) => setData('content', val)}

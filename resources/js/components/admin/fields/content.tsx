@@ -3,20 +3,19 @@ import { Textarea } from '@/components/ui/textarea';
 import { useId } from 'react';
 
 type ContentFieldProps = {
-    name: string;
     label: string;
     value: string;
     onChange: (value: string) => void;
     error?: string;
 };
 
-export default function ContentField({ name, label, value, onChange, error }: ContentFieldProps) {
+export default function ContentField({ label, value, onChange, error }: ContentFieldProps) {
     const id = useId();
 
     return (
         <div className="space-y-2">
-            <Label htmlFor={id}>{label}</Label>
-            <Textarea id={id} name={name} value={value} onChange={(e) => onChange(e.target.value)} />
+            <Label htmlFor={id} className='block'>{label}</Label>
+            <Textarea id={id} value={value} onChange={(e) => onChange(e.target.value)} />
             {error && <p className="text-sm text-red-500">{error}</p>}
         </div>
     );

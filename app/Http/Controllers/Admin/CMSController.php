@@ -31,7 +31,7 @@ class CMSController extends Controller
             'date' => 'nullable|date_format:Y-m-d',
 
             'color' => 'nullable|string|max:255',
-            'number' => 'nullable|integer',
+            'number' => 'nullable|integer|min:-2147483648|max:2147483647',
             'boolean' => 'nullable|boolean',
         ]);
 
