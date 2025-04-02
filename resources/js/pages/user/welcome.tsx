@@ -15,6 +15,7 @@ export default function Welcome({ blocks }: WelcomeProps) {
                 <section>
                     {cbk(blocks, 'hero', 'text') && <h1 className="mb-3 text-3xl font-bold">{blocks.hero.text}</h1>}
                     {cbk(blocks, 'hero', 'content') && <p>{blocks.hero.content}</p>}
+                    {cbk(blocks, 'hero', 'color') && <div style={{backgroundColor: blocks.hero.color || '#fff'}}>This is colored div</div>}
                 </section>
                 <section className="grid grid-cols-3 gap-6">
                     {range(1, 3).map((number) => {

@@ -27,7 +27,7 @@ export default function Home({ blocks }: PageProps) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Admin" />
-            <div className="grid gap-4 rounded-xl p-4 md:grid-cols-2">
+            <div className="max-w-2xl px-2 md:px-4">
                 <div>
                     <h2 className="p-2 text-lg font-bold">Хиро секция</h2>
                     <AccordionWrapper>
@@ -35,7 +35,7 @@ export default function Home({ blocks }: PageProps) {
                     </AccordionWrapper>
                 </div>
             </div>
-            <div className="grid gap-4 rounded-xl p-4 md:grid-cols-2">
+            <div className="max-w-2xl px-2 md:px-4">
                 <div>
                     <h2 className="p-2 text-lg font-bold">Карточки на главной странице</h2>
                     <AccordionWrapper>
@@ -45,7 +45,7 @@ export default function Home({ blocks }: PageProps) {
                     </AccordionWrapper>
                 </div>
             </div>
-            <div className="grid gap-4 rounded-xl p-4 md:grid-cols-2">
+            <div className="max-w-2xl px-2 md:px-4">
                 <div>
                     <h2 className="p-2 text-lg font-bold">Цвет карточек на странице</h2>
                     <AccordionWrapper>
@@ -54,7 +54,7 @@ export default function Home({ blocks }: PageProps) {
                 </div>
             </div>
 
-            <div className="grid gap-4 rounded-xl p-4 md:grid-cols-2">
+            <div className="max-w-2xl px-2 md:px-4">
                 <div>
                     <h2 className="p-2 text-lg font-bold">Галерея фотографий</h2>
                     <AccordionWrapper>
@@ -62,7 +62,7 @@ export default function Home({ blocks }: PageProps) {
                     </AccordionWrapper>
                 </div>
             </div>
-            <div className="grid gap-4 rounded-xl p-4 md:grid-cols-2">
+            <div className="max-w-2xl px-2 md:px-4">
                 <div>
                     <h2 className="p-2 text-lg font-bold">Список покупок</h2>
                     <AccordionWrapper>

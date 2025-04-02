@@ -14,7 +14,7 @@ export default function Dashboard() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <div className="border-sidebar-border/70 dark:border-sidebar-border border">welcome back, admin!</div>
+                <div className="text-lg">Добро пожаловать в админ панель!</div>
             </div>
         </AppLayout>
     );
