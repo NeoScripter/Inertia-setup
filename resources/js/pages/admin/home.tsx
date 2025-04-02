@@ -27,7 +27,7 @@ export default function Home({ blocks }: PageProps) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Admin" />
-            <div className='max-w-4xl px-2 md:px-4'>
+            <div className='max-w-4xl px-2 md:px-4 space-y-4'>
                 <div>
                     <div>
                         <h2 className="p-2 text-lg font-bold">Хиро секция</h2>

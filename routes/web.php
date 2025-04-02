@@ -9,12 +9,6 @@ Route::get('/posts', function () {
     return Inertia::render('user/posts');
 })->name('posts');
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('admin', function () {
-        return Inertia::render('admin/dashboard');
-    })->name('admin.dashboard');
-});
-
 Route::get('/', function () {
     return Inertia::render('user/welcome', [
         'blocks' => CmsBlockHelper::getByPage('home')
@@ -22,7 +16,10 @@ Route::get('/', function () {
 })->name('home');
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['role:admin', 'auth'])->group(function () {
+    Route::get('admin', function () {
+        return Inertia::render('admin/dashboard');
+    })->name('admin.dashboard');
 
     Route::get('/admin/home', function () {
         return Inertia::render('admin/home', [
@@ -35,7 +32,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/image/image', [CMSController::class, 'destroyImage'])->name('admin.image.destroy');
     Route::delete('/images/image', [CMSController::class, 'destroyGalleryImage'])->name('admin.images.destroy');
     Route::post('/images/reorder', [CMSController::class, 'reorderGalleryImages'])->name('admin.images.reorder');
-
 });
 
 require __DIR__ . '/settings.php';
