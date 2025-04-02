@@ -16,6 +16,8 @@ export interface CmsBlock {
     number: number | null;
     boolean: boolean | null;
 
+    date: string | null;
+
     created_at: string;
     updated_at: string;
 }

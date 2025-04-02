@@ -27,6 +27,7 @@ export default function Welcome({ blocks }: WelcomeProps) {
                                 imagePath={item.image && `/storage/${item.image}`}
                                 description={item.content || ''}
                                 isGreen={pbk(blocks, 'question')?.boolean ?? false}
+                                date={item.date}
                             />
                         ) : null;
                     })}
@@ -53,9 +54,11 @@ type GridItemProps = {
     description: string;
     imagePath: string | null;
     isGreen: boolean;
+    date?: string | null;
 };
 
-function GridItem({ header, description, imagePath, isGreen }: GridItemProps) {
+function GridItem({ header, description, imagePath, isGreen, date }: GridItemProps) {
+    console.log(date);
     return (
         <div className={clsx('space-y-2 text-center', isGreen && 'bg-green-400')}>
             <header>{header}</header>
@@ -65,6 +68,7 @@ function GridItem({ header, description, imagePath, isGreen }: GridItemProps) {
                 </div>
             )}
             <p>{description}</p>
+            <p>{date}</p>
         </div>
     );
 }

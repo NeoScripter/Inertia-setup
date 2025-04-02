@@ -28,6 +28,8 @@ class CMSController extends Controller
             'images' => 'nullable|array',
             'images*' => 'image|max:1024',
 
+            'date' => 'nullable|date_format:Y-m-d',
+
             'color' => 'nullable|string|max:255',
             'number' => 'nullable|integer',
             'boolean' => 'nullable|boolean',
@@ -46,6 +48,7 @@ class CMSController extends Controller
             'color' => $validated['color'] ?? null,
             'number' => $validated['number'] ?? null,
             'boolean' => $validated['boolean'] ?? null,
+            'date' => $validated['date'] ?? null,
         ]);
 
         if ($request->hasFile('image')) {

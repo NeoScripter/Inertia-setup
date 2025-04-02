@@ -60,7 +60,7 @@ export default function TextsField({ label, texts, onChange, errors }: TextsFiel
                                         onClick={() => removeText(index)}
                                         variant="ghost"
                                         type="button"
-                                        className={clsx('cursor-pointer', fieldError && 'text-red-500')}
+                                        className={clsx('cursor-pointer')}
                                     >
                                         <X className="size-5" />
                                     </Button>
@@ -70,7 +70,7 @@ export default function TextsField({ label, texts, onChange, errors }: TextsFiel
                         );
                     })}
 
-                    <Button onClick={addText} type="button" variant="outline" className="ml-auto flex items-center gap-2">
+                    <Button onClick={addText} type="button" variant="outline" className="ml-auto flex items-center gap-2 cursor-pointer">
                         Добавить пункт
                         <ListPlus />
                     </Button>

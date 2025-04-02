@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('color')->nullable()->default(null);
             $table->integer('number')->nullable()->default(null);
             $table->boolean('boolean')->nullable()->default(null);
+            $table->date('date')->nullable()->default(null);
             $table->timestamps();
         });
     }
