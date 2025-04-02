@@ -26,7 +26,7 @@ class CMSController extends Controller
 
             'image' => 'nullable|image|max:1024',
             'images' => 'nullable|array',
-            'images*' => 'image|max:1024',
+            'images*' => 'nullable|image|max:1024',
 
             'date' => 'nullable|date_format:Y-m-d',
 
@@ -51,6 +51,8 @@ class CMSController extends Controller
             'date' => $validated['date'] ?? null,
         ]);
 
+        $block->save();
+
         if ($request->hasFile('image')) {
             if ($block->image && Storage::disk('public')->exists($block->image)) {
                 Storage::disk('public')->delete($block->image);
@@ -70,8 +72,6 @@ class CMSController extends Controller
                 ]);
             }
         }
-
-        $block->save();
 
         return redirect()->back();
     }

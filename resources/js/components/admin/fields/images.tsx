@@ -16,18 +16,20 @@ type ImagesFieldProps = {
     errors?: Record<string, string>;
     value: File[];
     onChange: (images: File[]) => void;
-    pageSlug: string;
-    blockSlug: string;
+    pageSlug?: string;
+    blockSlug?: string;
+    reorderRouteName: string;
+    deleteRouteName: string;
 };
 
-export default function ImagesField({ blockImages = [], errors = {}, value, onChange, pageSlug, blockSlug }: ImagesFieldProps) {
+export default function ImagesField({ blockImages = [], errors = {}, value, onChange, pageSlug = '', blockSlug = '', reorderRouteName, deleteRouteName }: ImagesFieldProps) {
     const id = useId();
     const [previewImages, setPreviewImages] = useState<File[]>(value);
     const [orderedImages, setOrderedImages] = useState(blockImages);
 
     useEffect(() => {
         setOrderedImages(blockImages);
-    }, [blockImages]);
+    }, [blockImages.length]);
 
     const sensors = useSensors(useSensor(PointerSensor));
 
@@ -66,7 +68,7 @@ export default function ImagesField({ blockImages = [], errors = {}, value, onCh
         setOrderedImages(newOrder);
 
         router.post(
-            route('admin.images.reorder'),
+            reorderRouteName,
             {
                 page_slug: pageSlug,
                 block_slug: blockSlug,
@@ -96,7 +98,7 @@ export default function ImagesField({ blockImages = [], errors = {}, value, onCh
                     <SortableContext items={orderedImages.map((img) => img.id)} strategy={horizontalListSortingStrategy}>
                         <div className="mt-4 flex flex-wrap items-start gap-2">
                             {orderedImages.map((img) => (
-                                <SortableImage key={img.id} img={img} pageSlug={pageSlug} blockSlug={blockSlug} />
+                                <SortableImage key={img.id} img={img} pageSlug={pageSlug} blockSlug={blockSlug} deleteRouteName={deleteRouteName} />
                             ))}
 
                             {previewImages.map((file, index) => (
@@ -124,9 +126,10 @@ type SortableImageProps = {
     img: CmsImage;
     pageSlug: string;
     blockSlug: string;
+    deleteRouteName: string;
 };
 
-function SortableImage({ img, pageSlug, blockSlug }: SortableImageProps) {
+function SortableImage({ img, pageSlug, blockSlug, deleteRouteName }: SortableImageProps) {
     const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: img.id });
 
     const style = {
@@ -150,7 +153,7 @@ function SortableImage({ img, pageSlug, blockSlug }: SortableImageProps) {
                 />
             </div>
             <DeleteImgLink
-                routeName={route('admin.images.destroy')}
+                routeName={deleteRouteName}
                 handleDeleteImage={() => {}}
                 data={{ id: img.id, page_slug: pageSlug, block_slug: blockSlug }}
             />

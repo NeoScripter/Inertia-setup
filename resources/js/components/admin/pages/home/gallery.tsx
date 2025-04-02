@@ -38,6 +38,8 @@ export default function Gallery({ block, slug, label }: GalleryProps) {
                 onChange={(imgs) => setData('images', imgs)}
                 pageSlug="home"
                 blockSlug={slug}
+                reorderRouteName={route('admin.images.reorder')}
+                deleteRouteName={route('admin.images.destroy')}
             />
         </AccordionForm>
     );
