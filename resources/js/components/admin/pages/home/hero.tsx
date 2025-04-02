@@ -18,7 +18,7 @@ export default function Hero({ block, slug, label }: HeroProps) {
     });
 
     return (
-        <AccordionForm label={label} post={post} toastMessage="Hero successfully updated!" routeName="home.update" blockSlug={slug} disabled={processing}>
+        <AccordionForm label={label} post={post} toastMessage="Hero successfully updated!" routeName="admin.update" blockSlug={slug} disabled={processing}>
             <TextField
                 name="text"
                 label="Заголовок главной страницы"

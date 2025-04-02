@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/update', [CMSController::class, 'update'])->name('admin.update');
     Route::delete('/image/image', [CMSController::class, 'destroyImage'])->name('admin.image.destroy');
     Route::delete('/images/image', [CMSController::class, 'destroyGalleryImage'])->name('admin.images.destroy');
+    Route::post('/images/reorder', [CMSController::class, 'reorderGalleryImages'])->name('admin.images.reorder');
+
 });
 
 require __DIR__ . '/settings.php';

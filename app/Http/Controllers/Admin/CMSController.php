@@ -125,4 +125,24 @@ class CMSController extends Controller
 
         return redirect()->back();
     }
+
+    public function reorderGalleryImages(Request $request)
+    {
+        $validated = $request->validate([
+            'page_slug' => 'required|string|max:255',
+            'block_slug' => 'required|string|max:255',
+            'order' => 'required|array',
+            'order.*' => 'integer|exists:cms_images,id',
+        ]);
+
+        $block = CmsBlock::where('page_slug', $validated['page_slug'])
+            ->where('block_slug', $validated['block_slug'])
+            ->firstOrFail();
+
+        foreach ($validated['order'] as $index => $imageId) {
+            CmsImage::where('id', $imageId)->update(['order' => $index]);
+        }
+
+        return back();
+    }
 }
