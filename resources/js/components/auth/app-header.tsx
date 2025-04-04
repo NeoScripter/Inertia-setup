@@ -7,9 +7,9 @@ import { NavigationMenu, NavigationMenuItem, NavigationMenuList, navigationMenuT
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { UserMenuContent } from '@/components/auth/user-menu-content';
-import { useInitials } from '@/hooks/use-initials';
-import { cn } from '@/lib/utils';
-import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types';
+import { useInitials } from '@/lib/hooks/use-initials';
+import { cn } from '@/lib/utils/cn';
+import { type BreadcrumbItem, type NavItem, type SharedData } from '@/lib/types';
 import { Link, usePage } from '@inertiajs/react';
 import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-react';
 import AppLogoIcon from './app-logo-icon';

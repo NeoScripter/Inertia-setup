@@ -1,4 +1,4 @@
-import { CmsImage } from '@/types/cmsBlock';
+import { CmsImage } from '@/lib/types/cmsBlock';
 import { useForm } from '@inertiajs/react';
 import ImagesField from '../../fields/images';
 import AccordionForm from '../../forms/accordion-form';

@@ -1,7 +1,7 @@
 import UserLayout from '@/layouts/user-layout';
-import { BlockType } from '@/types/cmsBlock';
-import { cbk, pbk } from '@/utils/pickBlock';
-import { range } from '@/utils/range';
+import { BlockType } from '@/lib/types/cmsBlock';
+import { cbk, pbk } from '@/lib/utils/pick-block';
+import { range } from '@/lib/utils/range';
 import clsx from 'clsx';
 
 type WelcomeProps = {

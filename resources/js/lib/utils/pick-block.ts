@@ -1,4 +1,4 @@
-import { BlockType, CmsBlock } from '@/types/cmsBlock';
+import { BlockType, CmsBlock } from '@/lib/types/cmsBlock';
 
 export function pbk(blocks: BlockType, key: string) {
     return blocks[key];

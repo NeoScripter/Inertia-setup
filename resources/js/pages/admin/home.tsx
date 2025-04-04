@@ -1,10 +1,10 @@
 import Hero from '@/components/admin/pages/home/hero';
 import Intro from '@/components/admin/pages/home/intro';
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
-import { BlockType } from '@/types/cmsBlock';
-import { range } from '@/utils/range';
-import { pbk } from '@/utils/pickBlock';
+import { type BreadcrumbItem } from '@/lib/types';
+import { BlockType } from '@/lib/types/cmsBlock';
+import { range } from '@/lib/utils/range';
+import { pbk } from '@/lib/utils/pick-block';
 import { Head } from '@inertiajs/react';
 import AccordionWrapper from '@/components/admin/forms/accordion-wrapper';
 import Question from '@/components/admin/pages/home/question';

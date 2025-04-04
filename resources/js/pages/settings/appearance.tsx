@@ -2,7 +2,7 @@ import { Head } from '@inertiajs/react';
 
 import AppearanceTabs from '@/components/auth/appearance-tabs';
 import HeadingSmall from '@/components/auth/heading-small';
-import { type BreadcrumbItem } from '@/types';
+import { type BreadcrumbItem } from '@/lib/types';
 
 import AppLayout from '@/layouts/app-layout';
 import SettingsLayout from '@/layouts/settings/layout';

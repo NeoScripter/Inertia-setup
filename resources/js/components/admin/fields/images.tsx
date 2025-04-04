@@ -1,5 +1,5 @@
 import { Input } from '@/components/ui/input';
-import { CmsImage } from '@/types/cmsBlock';
+import { CmsImage } from '@/lib/types/cmsBlock';
 import { closestCenter, DndContext, DragEndEvent, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { arrayMove, horizontalListSortingStrategy, SortableContext, useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';

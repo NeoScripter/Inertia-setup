@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { formatDate } from '@/lib/utils';
+import { formatDate } from '@/lib/utils/cn';
 import { VisitOptions } from 'node_modules/@inertiajs/core/types/types';
 import { FormEvent } from 'react';
 import { toast } from 'sonner';
